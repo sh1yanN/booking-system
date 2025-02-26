@@ -5,11 +5,21 @@ import { createClient } from '@/utils/supabase/client'
 import { addDays, format } from 'date-fns'
 import { Calendar as CalendarIcon } from 'lucide-react'
 
+// 明确定义 Slot 类型
+interface Slot {
+  id: string
+  business_id: string
+  start_time: string
+  duration: string
+  capacity: number
+}
+
 export default function Calendar({ businessId }: { businessId: string }) {
   const [date, setDate] = useState(new Date())
-  const [slots, setSlots] = useState<any[]>([])
+  const [slots, setSlots] = useState<Slot[]>([]) // 应用严格类型
   const supabase = createClient()
 
+  // 修复依赖项问题
   useEffect(() => {
     const fetchSlots = async () => {
       const start = date
@@ -26,7 +36,7 @@ export default function Calendar({ businessId }: { businessId: string }) {
     }
 
     fetchSlots()
-  }, [date, businessId, supabase])
+  }, [date, businessId, supabase]) // ✅ 正确依赖项
 
   return (
     <div>
