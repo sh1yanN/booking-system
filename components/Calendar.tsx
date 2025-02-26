@@ -26,7 +26,7 @@ export default function Calendar({ businessId }: { businessId: string }) {
     }
 
     fetchSlots()
-  }, [date, businessId])
+  }, [date, businessId, supabase])
 
   return (
     <div>
