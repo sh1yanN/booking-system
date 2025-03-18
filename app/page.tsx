@@ -1,3 +1,4 @@
+// app/page.tsx
 import { createClient } from '@/utils/supabase/client'
 
 export default async function Home() {
@@ -5,7 +6,7 @@ export default async function Home() {
   const { data: businesses } = await supabase
     .from('businesses')
     .select('id, name, slug, description')
-
+  console.log('商家数据:', businesses) // 调试输出
   return (
     <div className="max-w-4xl mx-auto p-4">
       <h1 className="text-3xl font-bold mb-8">商家列表</h1>

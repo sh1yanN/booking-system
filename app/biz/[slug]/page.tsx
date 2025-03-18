@@ -10,6 +10,7 @@ interface Business {
   id: string;
   name: string;
   slug: string;
+  description?: string;
   open_hours?: Record<string, string[]>;
 }
 
@@ -57,6 +58,7 @@ export default function BizPage() {
       {business && (
         <Calendar 
           businessId={business.id}
+          
         />
       )}
     </div>
